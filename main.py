@@ -2,7 +2,6 @@ import cv2
 
 kaskade_lica = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 kaskade_oci = cv2.CascadeClassifier("haarcascade_eye.xml")
-kaskade_osmijeh = cv2.CascadeClassifier("haarcascade_smile.xml")
 
 WebKamera = cv2.VideoCapture(0)
 
@@ -17,7 +16,7 @@ while True:
         snimka_siva_boja = gray_img[y:y + h, x:x + w]
         snimka_u_boji = img[y:y + h, x:x + w]
 
-    oci = kaskade_oci.detectMultiScale(snimka_siva_boja)
+    oci = kaskade_oci.detectMultiScale(gray_img[y:y + h, x:x + w])
     for (ex, ey, ew, eh) in oci:
         cv2.rectangle(snimka_u_boji, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 1)
 
